@@ -10,19 +10,45 @@ description: "Use when the user wants to create a new feature, start a new proje
 
 Create a new feature in the `.supercrew/features/` directory. This skill guides the user through defining a feature, then generates the 4 required files.
 
+## Critical Rule: Gather ALL Input Before ANY Action
+
+**Ask all questions first, then execute all actions.** Never interleave questions with file creation or git operations. This prevents issues like creating files on the wrong branch or needing to stash/recreate work.
+
 ## Process
 
-### Step 1: Gather Feature Information
+### Step 1: Gather ALL Feature Information
 
-Ask the user for the following (one question at a time):
+Ask the user for the following (one question at a time, or batch where appropriate):
 
 1. **Feature title** — a short, descriptive name (e.g., "User Authentication", "Dashboard Redesign")
 2. **Feature ID** — suggest a kebab-case slug derived from the title (e.g., `user-auth`, `dashboard-redesign`). Let the user confirm or override.
 3. **Priority** — P0 (critical) | P1 (high) | P2 (medium, default) | P3 (low)
 4. **Owner** — who is responsible for this feature (default: current git user name)
 5. **Brief description** — one sentence describing what this feature does and why
+6. **Create backlog PR?** — ask if they want to create a PR to make this feature visible to the team
 
-### Step 2: Create Feature Directory and Files
+Do NOT proceed to Step 2 until all questions are answered.
+
+### Step 2: Execute All Actions
+
+Now that all input is gathered, execute the appropriate workflow:
+
+#### If creating a backlog PR (user said yes in Step 1):
+
+1. Fetch latest and create a new branch named `backlog/<feature-id>` from `origin/main`
+2. Create the feature directory and files **on the new branch** (see file specs below)
+3. Stage, commit with message: `feat: add feature <feature-id> to backlog`
+4. Push the branch and create a PR with:
+   - **Title:** `feat: add <feature-id> to backlog`
+   - **Body:** The feature title, description, priority, and owner
+5. Switch back to the original branch
+
+#### If NOT creating a backlog PR:
+
+1. Create the feature directory and files on the current branch (see file specs below)
+2. Remind the user that the feature won't be visible to the rest of the team until it's merged into remote main via a PR
+
+### Feature Directory and Files
 
 Create the directory `.supercrew/features/<feature-id>/` with 4 files.
 
@@ -108,21 +134,9 @@ After creating all files, present a summary:
 🏷️ Status: planning | Priority: <priority> | Owner: <owner>
 ```
 
-### Step 4: Offer to Create a PR for Backlog Visibility
+If a PR was created, include the PR URL.
 
-Ask the user if they want to create a PR to add this feature to the backlog. If yes:
-
-1. Fetch latest and create a new branch named `backlog/<feature-id>` from `origin/main`
-2. Stage the new `.supercrew/features/<feature-id>/` directory
-3. Commit with message: `feat: add feature <feature-id> to backlog`
-4. Push the branch and create a PR with:
-   - **Title:** `feat: add <feature-id> to backlog`
-   - **Body:** The feature title, description, priority, and owner
-5. Report the PR URL to the user
-
-If the user declines, remind them that the feature won't be visible to the rest of the team until it's merged into remote main via a PR.
-
-### Step 5: Next Steps
+### Step 4: Next Steps
 
 Present next steps:
 
