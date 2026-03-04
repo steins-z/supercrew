@@ -5,8 +5,8 @@
   "author": {
     "name": "steinsz"
   },
-  "homepage": "https://github.com/nicepkg/supercrew",
-  "repository": "https://github.com/nicepkg/supercrew",
+  "homepage": "https://github.com/steins-z/supercrew",
+  "repository": "https://github.com/steins-z/supercrew",
   "license": "MIT",
   "keywords": ["feature-management", "kanban", "lifecycle", "planning", "tracking"]
 }
