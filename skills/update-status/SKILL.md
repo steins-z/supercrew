@@ -64,6 +64,13 @@ Append to `log.md`:
 - Reason: <brief reason for the transition>
 ```
 
+### Step 5: Commit and Push to Remote
+
+1. Commit the updated `meta.yaml` and `log.md` to the feature branch (`feature/<id>`)
+2. Push to `origin/feature/<id>` so the kanban (SessionStart hook) reflects the change
+
+If already on the feature branch, commit and push directly. If on another branch (e.g., `main`), checkout the feature branch, commit, push, then return to the original branch.
+
 ## Validation
 
 - Reject any transition not in the valid transitions graph
