@@ -4,21 +4,27 @@ name: using-supercrew
 description: "Use at session start to establish how supercrew skills work. Ensures features are tracked with structured lifecycle management."
 ---
 
-<EXTREMELY_IMPORTANT>
-You have the supercrew plugin installed. You MUST follow these rules for feature lifecycle management.
+<EXTREMELY-IMPORTANT>
+If you think there is even a 1% chance a supercrew skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
 
-If a supercrew skill applies to the current task, you MUST invoke it. This is not optional.
-</EXTREMELY_IMPORTANT>
+IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
+
+Invoke the relevant skill BEFORE any response or action — including clarifying questions.
+
+This is not negotiable. This is not optional. You cannot rationalize your way out of this.
+</EXTREMELY-IMPORTANT>
 
 # Using SuperCrew
 
 ## The Rule
 
-**Check for applicable supercrew skills BEFORE taking action.** If the user is discussing features, planning, status updates, or progress — a supercrew skill almost certainly applies.
+**Invoke relevant supercrew skills BEFORE any response or action.** Even a 1% chance a skill might apply means you must invoke it to check. If an invoked skill turns out to be wrong for the situation, you don't need to use it.
+
+When you invoke a skill, announce it: **"Using supercrew:[skill-name] to [purpose]"**
 
 ## How to Access Skills
 
-**In Claude Code:** Use the `Skill` tool to invoke supercrew skills by name. When you invoke a skill, its content is loaded — follow it directly.
+**In Claude Code:** Use the `Skill` tool to invoke supercrew skills by name. When you invoke a skill, its content is loaded — follow it directly. Never use the Read tool on skill files.
 
 ## When to Use Each Skill
 
@@ -32,15 +38,21 @@ If a supercrew skill applies to the current task, you MUST invoke it. This is no
 
 ## Decision Flow
 
-```
-User message received
-    ↓
-Does it involve a feature? ──yes──→ Is there a .supercrew/features/ dir?
-    │                                    │
-    no                                  yes → Check which skill applies → Invoke it
-    │                                    │
-    ↓                                   no → Suggest /supercrew:new-feature
-Respond normally
+```dot
+digraph skill_flow {
+    "User message received" [shape=doublecircle];
+    "Might any supercrew skill apply?" [shape=diamond];
+    "Invoke Skill tool" [shape=box];
+    "Announce: 'Using supercrew:[skill] to [purpose]'" [shape=box];
+    "Follow skill exactly" [shape=box];
+    "Respond normally" [shape=doublecircle];
+
+    "User message received" -> "Might any supercrew skill apply?";
+    "Might any supercrew skill apply?" -> "Invoke Skill tool" [label="yes, even 1%"];
+    "Might any supercrew skill apply?" -> "Respond normally" [label="definitely not"];
+    "Invoke Skill tool" -> "Announce: 'Using supercrew:[skill] to [purpose]'";
+    "Announce: 'Using supercrew:[skill] to [purpose]'" -> "Follow skill exactly";
+}
 ```
 
 ## Red Flags
@@ -54,6 +66,9 @@ These thoughts mean STOP — you're rationalizing skipping the skill:
 | "I'll log progress later" | Log NOW while context is fresh |
 | "The plan doesn't need syncing" | `sync-plan` catches drift you won't notice |
 | "I know the meta.yaml format" | Skills evolve. Invoke current version. |
+| "The user didn't mention features" | Any coding task can involve a feature. Check first. |
+| "I need more context first" | Skill check comes BEFORE clarifying questions. |
+| "This is just a simple question" | Questions are tasks. Check for skills. |
 
 ## Available Commands
 
