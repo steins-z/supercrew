@@ -1,14 +1,14 @@
 ````skill
 ---
 name: create-feature
-description: "Use when the user wants to create a new feature, start a new project initiative, or when /new-feature command is invoked. Creates the .supercrew/features/<id>/ directory with meta.yaml, design.md, plan.md, and log.md."
+description: "Use when the user wants to create a new feature, start a new project initiative, or when /new-feature command is invoked. Creates the .supercrew/features/<id>/ directory with meta.yaml, prd.md, and log.md."
 ---
 
 # Create Feature
 
 ## Overview
 
-Create a new feature in the `.supercrew/features/` directory. This skill guides the user through defining a feature, then generates the 4 required files.
+Create a new feature in the `.supercrew/features/` directory. This skill guides the user through defining a feature, then generates the 3 required files.
 
 ## Critical Rule: Gather ALL Input Before ANY Action
 
@@ -50,7 +50,7 @@ Now that all input is gathered, execute the appropriate workflow:
 
 ### Feature Directory and Files
 
-Create the directory `.supercrew/features/<feature-id>/` with 4 files.
+Create the directory `.supercrew/features/<feature-id>/` with 3 files.
 
 **Use the templates in the plugin's `templates/` directory as reference for file structure.** Read the templates first, then generate files with the gathered information filled in.
 
@@ -59,7 +59,7 @@ Create the directory `.supercrew/features/<feature-id>/` with 4 files.
 ```yaml
 id: <feature-id>
 title: "<title>"
-status: planning
+status: todo
 owner: "<owner>"
 priority: <P0|P1|P2|P3>
 teams: []
@@ -68,7 +68,7 @@ created: "<YYYY-MM-DD>"
 updated: "<YYYY-MM-DD>"
 ```
 
-#### File 2: `design.md`
+#### File 2: `prd.md`
 
 ```markdown
 ---
@@ -86,39 +86,19 @@ reviewers: []
 
 <!-- To be refined during brainstorming -->
 
-## Design
-
-<!-- To be refined during brainstorming -->
-
 ## Out of Scope
 
 <!-- To be defined -->
 ```
 
-#### File 3: `plan.md`
-
-```markdown
----
-total_tasks: 0
-completed_tasks: 0
-progress: 0
----
-
-# <title> — Implementation Plan
-
-## Tasks
-
-- [ ] Task 1: (to be defined after design approval)
-```
-
-#### File 4: `log.md`
+#### File 3: `log.md`
 
 ```markdown
 # <title> — Progress Log
 
 ## <YYYY-MM-DD> — Feature Created
 
-- Feature initialized with status: `planning`
+- Feature initialized with status: `todo`
 - Owner: <owner>
 - Priority: <priority>
 ```
@@ -130,8 +110,8 @@ After creating all files, present a summary:
 ```
 ✅ Feature created: <feature-id>
 📁 Location: .supercrew/features/<feature-id>/
-📄 Files: meta.yaml, design.md, plan.md, log.md
-🏷️ Status: planning | Priority: <priority> | Owner: <owner>
+📄 Files: meta.yaml, prd.md, log.md
+🏷️ Status: todo | Priority: <priority> | Owner: <owner>
 ```
 
 If a PR was created, include the PR URL.
@@ -142,9 +122,9 @@ Present next steps:
 
 ```
 Next steps:
-- Use brainstorming to refine the design in design.md
-- Once design is approved, use sync-plan to generate the implementation plan
-- Use /supercrew:work-on <feature-id> to start working on this feature (creates a feature branch)
+- Refine the requirements in prd.md
+- Use /supercrew:work-on <feature-id> to start working (creates feature branch, design.md, and plan.md)
+- The design.md and plan.md for technical decisions and task breakdown will be created when entering 'doing' status
 ```
 
 ## Validation Rules
@@ -152,12 +132,12 @@ Next steps:
 - Feature ID must be kebab-case (lowercase, hyphens only, no spaces)
 - Feature ID must be unique (check `.supercrew/features/` for existing directories)
 - Priority must be one of: P0, P1, P2, P3
-- Status is always `planning` for new features
+- Status is always `todo` for new features
 - `created` and `updated` dates use YYYY-MM-DD format (today's date)
 
 ## Important
 
-- Do NOT start implementation after creating the feature. The next step is brainstorming/design.
+- Do NOT start implementation after creating the feature. The next step is refining requirements.
 - If `.supercrew/features/` directory doesn't exist yet, create it.
 - If `.supercrew/` directory doesn't exist yet, create it.
 

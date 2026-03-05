@@ -1,6 +1,7 @@
 ---
 status: draft
 reviewers: []
+# approved_by: ""
 ---
 
 # Pre-commit Schema Validation

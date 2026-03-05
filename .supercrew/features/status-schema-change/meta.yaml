@@ -1,7 +1,7 @@
-id: schema-validation
-title: "Pre-commit Schema Validation"
-status: todo
-owner: "Dazhen Pan"
+id: status-schema-change
+title: "Status Schema Change"
+status: ready-to-ship
+owner: "Steins Z"
 priority: P1
 teams: []
 tags: []

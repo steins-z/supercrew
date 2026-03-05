@@ -2,7 +2,7 @@
 
 ## 2026-03-04 — Feature Created
 
-- Feature initialized with status: `planning`
+- Feature initialized with status: `todo`
 - Owner: Steins Z
 - Priority: P0
 
