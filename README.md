@@ -16,7 +16,8 @@ Register the SuperCrew marketplace and install the plugin:
 To install from a local directory (for development or testing):
 
 ```
-/plugin install /path/to/supercrew
+/plugin marketplace add /absolute/path/to/supercrew
+/plugin install supercrew@supercrew
 ```
 
 ### Verify Installation
