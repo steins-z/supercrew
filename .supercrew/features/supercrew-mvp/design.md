@@ -22,7 +22,7 @@ The plugin is developed in the monorepo's `plugins/supercrew/` subdirectory, fol
 - `templates/` directory with file templates
 
 ### 1.2 Schema Definition
-- `SupercrewStatus` enum: `planning -> designing -> ready -> active -> blocked -> done`
+- `SupercrewStatus` enum: `todo -> doing -> ready-to-ship -> shipped`
 - `FeaturePriority`: `P0 | P1 | P2 | P3`
 - 4 files per feature in `.supercrew/features/<feature-id>/`:
   - `meta.yaml`: id, title, status, owner, priority, teams, tags, dates
@@ -84,12 +84,10 @@ The `using-supercrew` skill establishes the **1% rule**: if there's even a 1% ch
 3. All skill operations target the active feature by default
 
 ### Status Transitions
-Valid transitions form a directed graph:
-- planning -> designing
-- designing -> ready | planning
-- ready -> active
-- active -> blocked | done
-- blocked -> active
+Valid transitions form a linear flow:
+- todo -> doing
+- doing -> ready-to-ship
+- ready-to-ship -> shipped
 
 ## Out of Scope
 
