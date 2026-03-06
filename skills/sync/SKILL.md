@@ -1,6 +1,6 @@
 ````skill
 ---
-name: sync-supercrew
+name: sync
 description: "Use to sync all .supercrew updates during development — design iterations (dev-design.md), task updates (dev-plan.md), and progress logging (dev-log.md). Does not auto-commit or push."
 ---
 
@@ -145,7 +145,7 @@ If progress reached 100%, suggest:
 ## Important
 
 - Do NOT auto-commit or push — user controls git operations
-- All dev-* files are in `.supercrew/features/<feature-id>/`
+- All dev-* files are in `.supercrew/tasks/<feature-id>/`
 - If dev-* files don't exist, suggest using `do-task` to start work first
 - Keep session log entries concise but informative
 - When generating task breakdown, make tasks granular and actionable

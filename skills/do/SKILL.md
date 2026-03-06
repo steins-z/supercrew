@@ -1,6 +1,6 @@
 ````skill
 ---
-name: do-task
+name: do
 description: "Use when managing feature lifecycle — starting work (todo → doing), completing implementation (doing → ready-to-ship), shipping (ready-to-ship → shipped), or going back to requirements (doing → todo). Handles branch creation and dev-* file management."
 ---
 
@@ -27,7 +27,7 @@ doing → todo               (back to requirements)
 
 - Use the active feature from the current session context
 - If no active feature, ask the user which feature to work on
-- Verify the feature directory exists in `.supercrew/features/<feature-id>/`
+- Verify the feature directory exists in `.supercrew/tasks/<feature-id>/`
 
 ### Step 2: Determine New Status
 
@@ -186,7 +186,7 @@ Next: Fill in dev-design.md, then use /supercrew:sync to generate task breakdown
 ## Important
 
 - Do NOT auto-push — user controls git operations
-- When creating dev-* files, they go in the feature directory: `.supercrew/features/<feature-id>/`
+- When creating dev-* files, they go in the feature directory: `.supercrew/tasks/<feature-id>/`
 - The dev-* files are only created on `todo → doing` transition
 - For other transitions, only update `meta.yaml` and append to `dev-log.md`
 
