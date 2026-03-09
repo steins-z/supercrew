@@ -30,28 +30,22 @@ Ask the user for the following:
 
 Do NOT proceed to Step 2 until all questions are answered.
 
-### Step 2: Derive Username
 
-Get the username for branch naming:
 
-1. Run `git config user.name` to get the full name (e.g., "Steins Z")
-2. Convert to lowercase and replace spaces with hyphens (e.g., `steins-z`)
+### Step 2: (Optional) Create a Feature Branch
 
-### Step 3: Create Backlog Branch
+If you are currently on the 'main' or 'dev' branch, it is recommended to create a new branch for your feature work:
 
-1. Fetch latest: `git fetch origin main`
-2. Create branch from `origin/main`: `git checkout -b user/<username>/backlog-<feature-id> origin/main`
+Example: `git checkout -b my-feature-branch`
 
-Example: `user/steins-z/backlog-architecture-refinement`
+If you are already on a feature branch, you can continue working there.
 
-### Step 4: Create Feature Directory and Files
-
-Create the directory `.supercrew/tasks/<feature-id>/` with 2 files.
-
-#### File 1: `meta.yaml`
-
-```yaml
-id: <feature-id>
+```
+✅ Feature created: <feature-id>
+📁 Location: .supercrew/tasks/<feature-id>/
+📄 Files: meta.yaml, prd.md
+🟷 Status: todo | Priority: <priority> | Owner: <owner>
+```
 title: "<title>"
 status: todo
 owner: "<owner>"
@@ -106,10 +100,11 @@ After creating all files, present a summary:
 Present next steps:
 
 ```
+
 Next steps:
 - Review and refine prd.md if needed
 - Push branch when ready: git push -u origin <branch-name>
-- Use /supercrew:start <feature-id> to begin work (creates dev-* files and switches to work branch)
+- Use /supercrew:start <feature-id> to begin work (creates dev-* files and switches to your chosen work branch)
 ```
 
 ## Validation Rules
@@ -119,7 +114,7 @@ Next steps:
 - Priority must be one of: P0, P1, P2, P3
 - Status is always `todo` for new features
 - `created` and `updated` dates use YYYY-MM-DD format (today's date)
-- Username must be lowercase with hyphens (no spaces)
+
 
 ## Important
 
