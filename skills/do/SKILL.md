@@ -46,18 +46,11 @@ If ambiguous, ask the user to confirm.
 
 #### For `todo → doing`:
 
-1. **Derive username**:
-   - Run `git config user.name` (e.g., "Steins Z")
-   - Convert to lowercase, replace spaces with hyphens (e.g., `steins-z`)
 
-2. **Determine branch base**:
-   - Check current branch name
-   - If on `user/<username>/backlog-<feature-id>` → branch from current HEAD
-   - Otherwise → fetch and branch from `origin/main`
-
-3. **Create/switch to work branch**:
-   - Branch name: `user/<username>/<feature-id>`
-   - Example: `user/steins-z/architecture-refinement`
+1. **(Optional) Create or switch to a feature branch**:
+   - If you are currently on the 'main' branch, it is recommended to create a new branch for your feature work:
+   - Example: `git checkout -b my-feature-branch`
+   - If you are already on a feature branch, you can continue working there.
    - If branch exists, switch to it; otherwise create it
 
 4. **Create dev-design.md**:
@@ -180,8 +173,7 @@ Next: Fill in dev-design.md, then use /supercrew:sync to generate task breakdown
 - Reject any transition not in the valid transitions graph
 - Ensure `meta.yaml` required fields remain intact after edit
 - `updated` date must be set to today (YYYY-MM-DD)
-- Username must be lowercase with hyphens
-- Branch names must follow pattern: `user/<username>/<feature-id>`
+
 
 ## Important
 
