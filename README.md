@@ -1,8 +1,60 @@
-# SuperCrew
+# 🚀 SuperCrew
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Claude Code Plugin](https://img.shields.io/badge/Claude%20Code-Plugin-blue.svg)](https://claude.ai/claude-code)
+[![Version](https://img.shields.io/badge/Version-1.0.0-green.svg)](https://github.com/steins-z/supercrew)
+[![Status](https://img.shields.io/badge/Status-Active-brightgreen.svg)](https://github.com/steins-z/supercrew)
 
 AI-driven feature lifecycle management for Claude Code. Tracks features through a structured lifecycle — from requirements through design, implementation, and shipping — using `.supercrew/tasks/` directories.
 
-## Installation
+## 🌟 Why SuperCrew?
+
+SuperCrew transforms how you manage features with Claude Code by providing:
+
+- **🎯 Structured Feature Development**: No more scattered notes or forgotten requirements. Every feature gets proper tracking from idea to deployment.
+- **🤖 AI-Powered Automation**: Claude automatically knows which skill to use based on your context — no manual commands needed.
+- **📊 Clear Progress Visibility**: See all your features at a glance with status tables and lifecycle tracking.
+- **🔄 Seamless Workflow Integration**: Uses your existing git branches and integrates naturally with your development process.
+- **📝 Documentation That Writes Itself**: Automatically generates PRDs, design docs, and development logs as you work.
+- **👥 Team Collaboration**: User-namespaced branches prevent conflicts and make team coordination effortless.
+
+## ⚡ Quick Start
+
+Get up and running with SuperCrew in under 2 minutes:
+
+1. **Install SuperCrew**
+   ```bash
+   /plugin marketplace add steins-z/supercrew
+   /plugin install supercrew@supercrew
+   ```
+
+2. **Create your first feature**
+   ```
+   "I want to add dark mode support to my app"
+   ```
+   SuperCrew automatically creates the feature structure and backlog branch.
+
+3. **Start working on it**
+   ```
+   /supercrew:start dark-mode
+   ```
+   This creates your work branch and all development files.
+
+4. **Track your progress naturally**
+   ```
+   "I finished implementing the theme toggle component"
+   "The dark mode styling is complete"
+   ```
+   SuperCrew syncs your progress automatically.
+
+5. **Ship when ready**
+   ```
+   "This feature is ready to ship!"
+   ```
+
+That's it! SuperCrew handles the lifecycle management while you focus on building.
+
+## 📦 Installation
 
 Register the SuperCrew marketplace and install the plugin:
 
@@ -11,7 +63,7 @@ Register the SuperCrew marketplace and install the plugin:
 /plugin install supercrew@supercrew
 ```
 
-### Development/Testing Installation
+### 🔧 Development/Testing Installation
 
 To install from a local directory (for development or testing):
 
@@ -20,11 +72,11 @@ To install from a local directory (for development or testing):
 /plugin install supercrew@supercrew
 ```
 
-### Verify Installation
+### ✅ Verify Installation
 
 Start a new session. Claude will proactively announce which supercrew skill it is invoking before taking any action related to features. No manual skill invocation needed.
 
-## How It Works
+## ⚙️ How It Works
 
 SuperCrew injects context at session start via a `SessionStart` hook that:
 - Embeds skill routing guidance directly into session context
@@ -32,7 +84,7 @@ SuperCrew injects context at session start via a `SessionStart` hook that:
 - Auto-loads the active feature based on your current git branch
 - Provides a summary table of all features and their statuses
 
-### Branch Naming Convention
+### 🌿 Branch Naming Convention
 
 SuperCrew uses user-namespaced branches for better team collaboration:
 
@@ -43,7 +95,7 @@ SuperCrew uses user-namespaced branches for better team collaboration:
 
 Username is derived from `git config user.name`, converted to lowercase with hyphens (e.g., "Steins Z" → `steins-z`).
 
-### Proactive Skill Triggering
+### 🎯 Proactive Skill Triggering
 
 Skills activate using the **1% rule**: if there is even a 1% chance a skill applies, Claude invokes it before responding — including before clarifying questions. When a skill fires, Claude announces it:
 
@@ -51,7 +103,7 @@ Skills activate using the **1% rule**: if there is even a 1% chance a skill appl
 
 This means you never need to call skills manually. Just describe what you want.
 
-## The Feature Lifecycle
+## 🔄 The Feature Lifecycle
 
 ```
 todo → doing → ready-to-ship → shipped
@@ -69,7 +121,7 @@ Each feature lives in `.supercrew/tasks/<id>/` with files:
 | `dev-plan.md` | task checklist with progress tracking | Work starts (`doing`) |
 | `dev-log.md` | chronological development log | Work starts (`doing`) |
 
-## Skills
+## 🛠️ Skills
 
 | Skill | When it activates |
 |-------|-------------------|
@@ -77,7 +129,7 @@ Each feature lives in `.supercrew/tasks/<id>/` with files:
 | `do-task` | Status transitions — starting work, marking done, shipping. Creates `dev-*` files on `todo → doing` |
 | `sync-supercrew` | Syncing design iterations, task updates, and progress logging during development |
 
-## Commands
+## 💬 Commands
 
 | Command | Description |
 |---------|-------------|
@@ -86,25 +138,25 @@ Each feature lives in `.supercrew/tasks/<id>/` with files:
 | `/supercrew:sync` | Sync all .supercrew updates (design, plan, log) |
 | `/supercrew:status` | Show all features in a status table |
 
-## Example Usage
+## 💡 Example Usage
 
 Just talk naturally — SuperCrew skills activate automatically based on context.
 
-### Creating a Feature
+### 📝 Creating a Feature
 ```
 "I want to add dark mode support"
 "Let's create a new feature for user authentication"
 "Start tracking a caching layer feature"
 ```
 
-### Starting Work on a Feature
+### 🚀 Starting Work on a Feature
 ```
 "/supercrew:start dark-mode"
 "Start working on the auth feature"
 "Begin implementation of dark-mode"
 ```
 
-### During Implementation
+### ⚡ During Implementation
 ```
 "I finished the theme toggle component"
 "Update the plan - task 3 is done"
@@ -112,21 +164,21 @@ Just talk naturally — SuperCrew skills activate automatically based on context
 "/supercrew:sync"
 ```
 
-### Status Updates
+### 📊 Status Updates
 ```
 "This feature is ready to ship"
 "Ship it!"
 "We need to go back to requirements"
 ```
 
-### Checking Status
+### 🔍 Checking Status
 ```
 "/supercrew:status"
 "Show me all features"
 "What's the status of our features?"
 ```
 
-## File Structure
+## 📁 File Structure
 
 ```
 .supercrew/
@@ -139,12 +191,49 @@ Just talk naturally — SuperCrew skills activate automatically based on context
         └── dev-log.md       # Development log (created when work starts)
 ```
 
-## Updating
+## 🔄 Updating
 
 ```
 /plugin update supercrew
 ```
 
-## License
+## 🤝 Contributing
+
+We welcome contributions to SuperCrew! Here's how you can help:
+
+### 🐛 Reporting Issues
+- Use the [GitHub Issues](https://github.com/steins-z/supercrew/issues) page
+- Provide clear reproduction steps
+- Include your Claude Code version and environment details
+
+### 💻 Development Setup
+1. Fork the repository
+2. Clone your fork locally
+3. Install the plugin in development mode:
+   ```bash
+   /plugin marketplace add /path/to/your/supercrew-fork
+   /plugin install supercrew@supercrew
+   ```
+
+### 🔧 Making Changes
+1. Create a feature branch: `git checkout -b feature/your-feature-name`
+2. Make your changes
+3. Test thoroughly with various scenarios
+4. Commit with clear messages
+5. Push to your fork and create a Pull Request
+
+### 📋 Pull Request Guidelines
+- Describe what your PR does and why
+- Include any breaking changes in the description
+- Add tests if applicable
+- Update documentation as needed
+- Follow the existing code style
+
+### 🆘 Getting Help
+- Check existing [GitHub Issues](https://github.com/steins-z/supercrew/issues)
+- Start a [GitHub Discussion](https://github.com/steins-z/supercrew/discussions)
+- Review the documentation thoroughly
+
+## 📄 License
 
 MIT License — see [LICENSE](LICENSE) for details.
